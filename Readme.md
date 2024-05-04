@@ -1,6 +1,5 @@
-<div style="text-align:center">
-  <img src="./img/icon.png" alt="Project Banner" width="400">
-</div>
+
+![Project Banner](https://balaji-alpha.vercel.app/img/apiwriterIcon.png)
 
 
 ### Description

@@ -1,6 +1,6 @@
 {
   "name": "api-writer",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Streamline API writing with lightning-fast performance. Simplify complex tasks and reduce development time with streamlined code. Boost productivity and efficiency with optimized workflows.",
   "main": "index.js",
   "scripts": {
@@ -12,5 +12,6 @@
     "AUTOMATION"
   ],
   "author": "Balaji",
-  "license": "MIT"
+  "license": "MIT",
+  "git":"https://github.com/Balaji-Rajaram/api-writer/"
 }
