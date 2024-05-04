@@ -5,7 +5,7 @@ const generateController = require('./lib/generateController');
 const generateRoute = require('./lib/generateRoute');
 
 function generateProject(projectName, modules) {
-  const projectDir = path.join(__dirname, projectName);
+  const projectDir = path.join(__dirname, '../../', projectName);
   fs.mkdirSync(projectDir);
 
   // Create package.json file
@@ -27,20 +27,25 @@ function generateProject(projectName, modules) {
 }
   `;
   fs.writeFileSync(path.join(projectDir, 'package.json'), packageJsonContent);
+  const modelDir = path.join(projectDir, 'models');
+  fs.mkdirSync(modelDir);
+  const controllerDir = path.join(projectDir, 'controllers');
+  fs.mkdirSync(controllerDir);
+  const routerDir = path.join(projectDir, 'routes');
+  fs.mkdirSync(routerDir);
 
   modules.forEach(module => {
     const { name, properties, additionalApis } = module;
 
-    const moduleDir = path.join(projectDir, name);
-    fs.mkdirSync(moduleDir);
+
 
     const modelContent = generateModel(name, properties);
     const controllerContent = generateController(name, `${name}Controller`, properties, additionalApis);
     const routeContent = generateRoute(name, name, `${name}Controller`, properties);
 
-    fs.writeFileSync(path.join(moduleDir, `${name}Model.js`), modelContent);
-    fs.writeFileSync(path.join(moduleDir, `${name}Controller.js`), controllerContent);
-    fs.writeFileSync(path.join(moduleDir, `${name}Routes.js`), routeContent);
+    fs.writeFileSync(path.join(modelDir, `${name}Model.js`), modelContent);
+    fs.writeFileSync(path.join(controllerDir, `${name}Controller.js`), controllerContent);
+    fs.writeFileSync(path.join(routerDir, `${name}Routes.js`), routeContent);
   });
   const dbConfigContent = `
   const mongoose = require('mongoose');
@@ -56,9 +61,9 @@ function generateProject(projectName, modules) {
     console.log('Connected to MongoDB');
   });
     `;
-    const dbConfig = path.join(projectDir, "config");
-    fs.mkdirSync(dbConfig);
-    fs.writeFileSync(dbConfig, dbConfigContent);
+  const dbConfigDir = path.join(projectDir, "config");
+  fs.mkdirSync(dbConfigDir);
+  fs.writeFileSync(path.join(dbConfigDir, 'dbConfig.js'), dbConfigContent);
 
   // Create app.js
   const appContent = `
@@ -66,7 +71,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const dbConfig = require('./dbConfig');
+const dbConfig = require('./config/dbConfig');
 
 app.use(bodyParser.json());
 app.use(cors());

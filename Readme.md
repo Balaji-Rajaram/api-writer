@@ -38,7 +38,7 @@ Generate project
 
 ``` javascript 
 const projectName = 'projectAlpha';
-generateProject(projectName, modules);
+apiWriter(projectName, modules);
 ```
 
 
@@ -56,10 +56,9 @@ generateProject(projectName, modules);
  - `app.js` : Main entry point of the application.
  - `server.js` : Starts the server.
  - `dbConfig.js` : MongoDB configuration.
- - `<Module>/` : Directory for each module.
- - `<Module>Model.js` : MongoDB model definition for the module.
- - `<Module>Controller.js` : Controller logic for the module.
- - `<Module>Routes.js` : Express routes for the module.
+ - `models/<Module>Model.js` : Directory for models
+ - `routes/<Module>Route.js` : Directory for routes
+  - `controllers/<Module>Controller.js` : Directory for controllers.
  - `package.json` : Project metadata and dependencies.
 
 ### Contributing
