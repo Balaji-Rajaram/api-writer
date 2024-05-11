@@ -21,15 +21,15 @@ const modules = [
     name: 'User',
     properties: ['id', 'name', 'email'],
     additionalApis: [
-      { apiName: 'POST', controllerFunction: 'createUser' },
-      { apiName: 'DELETE', controllerFunction: 'deleteUserById' }
+      { method: 'POST', controllerFunction: 'createUser' },
+      { method: 'DELETE', controllerFunction: 'deleteUserById' }
     ]
   },
   {
     name: 'Post',
     properties: ['id', 'title', 'content'],
     additionalApis: [
-      { apiName: 'PUT', controllerFunction: 'updatePostTitle' }
+      { method: 'PUT', controllerFunction: 'updatePostTitle' }
     ]
   }
 ];
